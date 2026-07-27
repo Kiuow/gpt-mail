@@ -1,0 +1,24 @@
+{
+  "name": "gpt-mail",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An Outlook OAuth mailbox reader with OTP extraction and Vercel support.",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test",
+    "check": "npm test && node --check src/server.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "imapflow": "^1.5.0",
+    "mailparser": "^3.7.4"
+  }
+}

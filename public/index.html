@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Outlook OAuth 邮件验证码读取工具"
+    />
+    <title>GPT Mail · 邮件接码</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="/redeem.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="mail-shell">
+      <section class="mail-card-shell" aria-label="邮箱读取工具">
+        <header class="brand-row">
+          <a class="brand" href="/" aria-label="GPT Mail 首页">
+            <span class="brand-mark" aria-hidden="true">M</span>
+            <span>GPT Mail</span>
+          </a>
+          <div class="local-badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            本地处理
+          </div>
+        </header>
+
+        <div class="intro">
+          <p class="eyebrow">OUTLOOK / HOTMAIL · OAUTH2 + IMAP</p>
+          <h1>获取你的邮箱验证码</h1>
+          <p>
+            粘贴已获授权的邮箱凭据，读取收件箱与垃圾邮件，并自动识别最近的验证码。
+          </p>
+        </div>
+
+        <form id="mail-form">
+          <div class="field-heading">
+            <label for="credentials">邮箱凭据</label>
+            <button id="toggle-secret" class="text-button" type="button">
+              隐藏内容
+            </button>
+          </div>
+          <div class="secret-wrap" id="secret-wrap">
+            <textarea
+              id="credentials"
+              name="credentials"
+              rows="6"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+              placeholder="邮箱----密码----Client ID----Refresh Token"
+              required
+            ></textarea>
+          </div>
+          <p class="field-hint">
+            每行一条，支持批量粘贴。密码仅用于格式校验，不用于传统 IMAP 登录。
+          </p>
+
+          <div class="options-grid">
+            <label>
+              <span>邮件范围</span>
+              <select id="folder" name="folder">
+                <option value="all">所有邮件</option>
+                <option value="inbox">仅收件箱</option>
+                <option value="junk">仅垃圾邮件</option>
+              </select>
+            </label>
+            <label>
+              <span>最多获取</span>
+              <select id="max-count" name="maxCount">
+                <option value="5">5 封</option>
+                <option value="10" selected>10 封</option>
+                <option value="20">20 封</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="keyword-field">
+            <span>关键词 <em>可选</em></span>
+            <input
+              id="keyword"
+              name="keyword"
+              type="text"
+              maxlength="100"
+              autocomplete="off"
+              placeholder="例如：OpenAI、verification、验证码"
+            />
+          </label>
+
+          <button id="fetch-button" class="primary-button" type="submit">
+            <span>获取邮件</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <div class="privacy-note">
+          <span class="privacy-dot" aria-hidden="true"></span>
+          凭据仅在本次请求中使用，不保存输入历史
+        </div>
+
+        <section class="result-panel" aria-live="polite">
+          <header>
+            <div>
+              <span class="success-dot" aria-hidden="true"></span>
+              <strong>验证码与邮件</strong>
+            </div>
+            <button id="clear-button" class="text-button" type="button">
+              清空结果
+            </button>
+          </header>
+
+          <div id="alert" class="alert" hidden></div>
+
+          <div id="empty-state" class="empty-state">
+            <span class="empty-mark" aria-hidden="true">↳</span>
+            <div>
+              <h2>等待读取</h2>
+              <p>提交凭据后，验证码会优先显示在这里。</p>
+            </div>
+          </div>
+
+          <div id="loading-state" class="loading-state" hidden>
+            <div class="loader" aria-hidden="true"></div>
+            <div>
+              <h2>正在连接邮箱</h2>
+              <p>正在换取访问令牌并读取最近邮件…</p>
+            </div>
+          </div>
+
+          <div id="results" class="results" hidden></div>
+        </section>
+      </section>
+
+      <footer>
+        仅用于本人或已明确授权的邮箱 · 凭据不会写入文件或数据库
+      </footer>
+    </main>
+  </body>
+</html>
