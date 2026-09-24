@@ -72,16 +72,9 @@ npm run dev
 
 ## 部署到 Vercel
 
+<a href="https://vercel.com/new/project?template=https://github.com/Kiuow/gpt-mail/main"><img src="https://vercel.com/button"></a>
 
-
-### 通过 Git 部署
-
-1. 将项目推送到 GitHub、GitLab 或 Bitbucket。
-2. 打开 [Vercel New Project](https://vercel.com/new) 并导入仓库。
-3. 保持 Framework Preset 为 Express。
-4. 在项目设置的 Environment Variables 中填写需要的变量。
-5. 点击 Deploy。
-6. 部署完成后访问 `/api/health`，应返回：
+部署完成后访问 `/api/health`，应返回：
 
 ```json
 {"ok":true}
