@@ -72,7 +72,7 @@ npm run dev
 
 ## 部署到 Vercel
 
-<a href="https://vercel.com/new/project?template=https://github.com/Kiuow/gpt-mail/main"><img src="https://vercel.com/button"></a>
+<a href="https://vercel.com/new/import?s=https://github.com/Kiuow/gpt-mail/main"><img src="https://vercel.com/button"></a>
 
 部署完成后访问 `/api/health`，应返回：
 
